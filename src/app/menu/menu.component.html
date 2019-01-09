@@ -1,0 +1,75 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+
+    <div fxFlex>
+        <div>
+          <h3>Menu</h3>
+          <hr>
+        </div>
+      </div>
+
+      <div fxFlex *ngIf="dishes" [@expand]>
+          <mat-grid-list cols="2" rowHeight="200px">
+            <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" appHighlight>
+              <img height="200px" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
+              <mat-grid-tile-footer>
+                <h1>{{dish.name | uppercase}}</h1>
+              </mat-grid-tile-footer>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>  
+        
+        <div fxFlex [hidden]="dishes || errMess">
+          <mat-spinner> </mat-spinner>
+          <h4>loading ..</h4>
+        </div>
+
+        <div fxFlex *ngIf="errMess">
+          <h2>Error</h2>
+          <h4>{{ errMess }}</h4>
+        </div>
+  </div>
+
+  <div class="container" fxLayout="column" fxLayoutGap="10px">
+      <div fcFlex *ngIf="leaders">
+        <mat-grid-list cols="2" rowHeight="200px">
+          <mat-grid-tile *ngFor="let leader of leaders" [routerLink]="['/leaderdetail', leader.id]">
+            <img height="200px" src="{{BaseURL + leader.image}}" alt={{leader.name}}>
+            <mat-grid-tile-footer>
+              <h1>{{leader.name | uppercase}}</h1>
+            </mat-grid-tile-footer>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+      <div fxFlex [hidden]="leaders || errMess">
+          <mat-spinner> </mat-spinner>
+          <h4>loading ..</h4>
+        </div>
+
+        <div fxFlex *ngIf="errMess">
+          <h2>Error</h2>
+          <h4>{{ errMess }}</h4>
+        </div>
+    </div>
+
+
+    <div class="container" fxLayout="column" fxLayoutGap="10px">
+        <div fcFlex *ngIf="promotions">
+          <mat-grid-list cols="2" rowHeight="200px">
+            <mat-grid-tile *ngFor="let promotion of promotions" [routerLink]="['/promotiondetail', promotion.id]">
+              <img height="200px" src="{{BaseURL + promotion.image}}" alt={{promotion.name}}>
+              <mat-grid-tile-footer>
+                <h1>{{promotion.name | uppercase}}</h1>
+              </mat-grid-tile-footer>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+        <div fxFlex [hidden]="promotions || errMess">
+            <mat-spinner> </mat-spinner>
+            <h4>loading ..</h4>
+          </div>
+  
+          <div fxFlex *ngIf="errMess">
+            <h2>Error</h2>
+            <h4>{{ errMess }}</h4>
+          </div>
+      </div>
